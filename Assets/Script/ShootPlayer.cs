@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class ShootPlayer : MonoBehaviour
 {
+
+    public AudioSource audioSource;
+    public AudioClip sound;
+    public AudioClip sound2;
     [SerializeField] private GameObject Bal;
     [SerializeField] private float shootSpeed = 100f;
     [SerializeField] private GameObject posShoot;
@@ -78,6 +82,8 @@ public class ShootPlayer : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                audioSource.PlayOneShot(sound);
+                audioSource.PlayOneShot(sound2);
                 Shoot(transformShoot, SpeedGizmo.transform.position - transform.position);
                 isShootPlayer = true;
             }

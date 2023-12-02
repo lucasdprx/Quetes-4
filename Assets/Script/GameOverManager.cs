@@ -6,6 +6,8 @@ public class GameOverManager : MonoBehaviour
     public GameObject gameOverUI;
 
     public static GameOverManager instance;
+    public AudioSource audioSource;
+    public AudioClip sound;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class GameOverManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOverUI.SetActive(false);
         Time.timeScale = 1;
+        audioSource.PlayOneShot(sound);
         ShootPlayer.isShootIA = false;
         ShootPlayer.isShootPlayer = false;
         ShootPlayer.turnPlayer = true;
@@ -35,6 +38,7 @@ public class GameOverManager : MonoBehaviour
     public void MainMenuButton()
     {
         SceneManager.LoadScene("MainMenu");
+        audioSource.PlayOneShot(sound);
     }
     public void QuitButton()
     {

@@ -164,4 +164,3 @@ MonoBehaviour:
   TimeShoot: 4
   deceleration: 0.999
   rotation: 1
-  _wind: 0

@@ -1,9 +1,13 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class shootIA : MonoBehaviour
 {
+
+    public AudioSource audioSource;
+    public AudioClip sound;
     private float _timer = 0;
     [SerializeField] private GameObject _projectile;
     [SerializeField] private GameObject _target;
@@ -104,6 +108,7 @@ public class shootIA : MonoBehaviour
                 }
                 if (_target.GetComponent<CapsuleCollider2D>().OverlapPoint(_positionBullet) && !_shot)
                 {
+                    audioSource.PlayOneShot(sound);
                     var _ball = Instantiate(_projectile, _transform.position, Quaternion.identity);
                     _ball.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos((angle + Random.Range(_minRange, _maxRange)) * Mathf.Deg2Rad) * (_force + Random.Range(_minRange, _maxRange)) * 1.01f, Mathf.Sin((angle + Random.Range(_minRange, _maxRange)) * Mathf.Deg2Rad) * (_force + Random.Range(_minRange, _maxRange)) * 1.01f);
                     _shot = true;
